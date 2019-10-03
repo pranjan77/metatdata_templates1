@@ -66,6 +66,10 @@
                 },{
                     "input_parameter": "sample_template",
                     "target_property": "sample_template"
+                },
+                {
+                    "input_parameter": "additional_sample_fields",
+                    "target_property": "additional_sample_fields"
                 }
             ],
             "output_mapping": [

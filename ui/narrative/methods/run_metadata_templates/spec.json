@@ -56,7 +56,7 @@
                     "value": "tissue"
                 },
                 {            
-                    "age": "Age",
+                    "display": "Age",
                     "value": "age"
                 }
 

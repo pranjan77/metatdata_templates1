@@ -17,7 +17,7 @@
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "dropdown",
-            "options": 
+            "dropdown_options": 
             [
                 {
                     "display": "Environmental sample template",
@@ -37,7 +37,7 @@
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "dropdown",
-            "options": 
+            "dropdown_options": 
             [
                 {
                     "display": "Collection time",
@@ -46,7 +46,17 @@
                 {
                     "display": "Biome",
                     "value": "biome"
+                },
+                {
+                    "display": "Tissue",
+                    "value": "tissue"
+                },
+                {            
+                    "age": "Age",
+                    "value": "age"
                 }
+
+
             ]
         }
 

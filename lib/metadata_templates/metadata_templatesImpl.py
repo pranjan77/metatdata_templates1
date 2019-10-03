@@ -4,6 +4,9 @@ import logging
 import os
 
 from installed_clients.KBaseReportClient import KBaseReport
+from installed_clients.DataFileUtilClient import DataFileUtil
+from metadata_templates.Utils.TemplateUtil import TemplateUtil
+
 #END_HEADER
 
 
@@ -33,8 +36,18 @@ class metadata_templates:
     # be found
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
-        self.callback_url = os.environ['SDK_CALLBACK_URL']
-        self.shared_folder = config['scratch']
+
+        self.config = config
+        self.config['SDK_CALLBACK_URL'] = os.environ['SDK_CALLBACK_URL']
+
+        self.config['scratch'] = config['scratch']
+        self.config['KB_AUTH_TOKEN'] = os.environ['KB_AUTH_TOKEN']
+        self.config['shock-url'] = config['shock-url']
+
+        logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
+                            level=logging.INFO)
+       
+        self.config['dfu'] = DataFileUtil(self.config['SDK_CALLBACK_URL'])
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
         #END_CONSTRUCTOR
@@ -51,19 +64,14 @@ class metadata_templates:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_metadata_templates
-        report = KBaseReport(self.callback_url)
-        report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['sample_template']},
-                                                'workspace_name': params['workspace_name']})
-        output = {
-            'report_name': report_info['name'],
-            'report_ref': report_info['ref'],
-        }
+
+
+        template_runner = TemplateUtil(self.config)
+
+        output = template_runner.run_sample_template_app(params)    
 
         print (params)
-
-
-
+        print (output)
 
         #END run_metadata_templates
 

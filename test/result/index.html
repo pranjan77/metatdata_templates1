@@ -1,0 +1,185 @@
+<html>
+<head>
+  <script src="handsontable.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/6.2.2/handsontable.full.min.css">
+</head>
+
+<body>
+
+  <div id="example3" class="hot handsontable htColumnHeaders"></div>
+
+
+
+  <script>
+
+
+
+var container3 = document.getElementById('example3')
+
+
+var data = [['Sample Name', 'Parent Sample', 'PI', 'Project', 'material', 'Latitude', 'Longitude' ,'depth', 'Unit of depth', "Description"],
+[],[], [],[], [],[] , [],[], [],[], [],[], [],[], [],[], [],[]
+
+]
+
+
+
+var hot3 = new Handsontable(container3, {
+  manualColumnResize: true,
+  manualRowResize: true,
+  columnSorting: true,
+  colWidths: 150,
+  comments: true,
+  data: data,
+  fillHandle: true,
+  exportFile: true,
+  rowHeaders: true,
+  colHeaders: true,
+  contextMenu: true,
+
+  columns: [
+  {
+        type: 'text'
+    },
+     
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'parent_sample.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      },
+      strict: true
+    },
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'PI.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      },
+      strict: true
+    },
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'project.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      },
+      strict: true
+    },
+
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'envo.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      },
+      strict: true
+    },
+
+  {
+        type: 'numeric'
+    },
+
+  {
+        type: 'numeric'
+    },
+
+
+  {
+        type: 'numeric'
+    },
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'units_distance.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      }
+    },
+
+  {
+        type: 'text'
+    }
+  ]
+
+
+
+});
+
+hot3.updateSettings({
+  cells: function (row, col) {
+    var cellProperties = {};
+
+    if (row == 0) {
+      cellProperties.readOnly = true;
+    }
+  
+    return cellProperties;
+  }
+});
+
+
+
+
+
+
+
+  </script>
+
+</body>
+</html>

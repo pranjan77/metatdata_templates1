@@ -17,7 +17,9 @@
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "dropdown",
-            "dropdown_options": 
+            "dropdown_options": {
+                "options":
+
             [
                 {
                     "display": "Environmental sample template",
@@ -28,7 +30,8 @@
                     "value": "plant_sample_template"
                 }
             ]
-        },
+        }
+    },
 
         {
             "id": "additional_sample_fields",
@@ -37,7 +40,8 @@
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "dropdown",
-            "dropdown_options": 
+            "dropdown_options": {
+            "options":
             [
                 {
                     "display": "Collection time",
@@ -59,6 +63,7 @@
 
             ]
         }
+    }
 
     ],
     "behavior": {

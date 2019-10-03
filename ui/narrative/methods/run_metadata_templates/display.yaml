@@ -1,0 +1,42 @@
+#
+# define display information
+#
+name: Generate sample metadata template
+
+tooltip: |
+    Generate sample metadata template
+
+screenshots: []
+
+icon: icon.png
+
+#
+# define a set of similar apps that might be useful to the user
+#
+suggestions:
+    apps:
+        related:
+            [app1, app2]
+        next:
+            [app3, app4]
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    sample_template :
+        ui-name : |
+            Select pre-defined sample template
+        short-hint : |
+            Select pre-defined sample template
+        long-hint  : |
+            Select pre-defined sample template
+    additional_sample_fields :
+        ui-name : |
+            Select other fields to add to the template
+        short-hint : |
+            Select other fields to add to the template
+        long-hint  : |
+            Select other fields to add to the template
+description : |
+    <p>Generate sample metadata templates for samples and data types</p>

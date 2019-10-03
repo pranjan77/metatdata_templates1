@@ -1,0 +1,83 @@
+{
+    "ver": "0.0.1",
+    "authors": [
+        "pranjan77"
+    ],
+    "contact": "",
+    "categories": ["active"],
+    "widgets": {
+        "input": null,
+        "output": null
+    },
+    "parameters": [ 
+        {
+            "id": "sample_template",
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "dropdown",
+            "options": 
+            [
+                {
+                    "display": "Environmental sample template",
+                    "value": "environmental_sample_template"
+                },
+                {
+                    "display": "plant sample template",
+                    "value": "plant_sample_template"
+                }
+            ]
+        },
+
+        {
+            "id": "additional_sample_fields",
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "dropdown",
+            "options": 
+            [
+                {
+                    "display": "Collection time",
+                    "value": "collection_time"
+                },
+                {
+                    "display": "Biome",
+                    "value": "biome"
+                }
+            ]
+        }
+
+    ],
+    "behavior": {
+        "service-mapping": {
+            "url": "",
+            "name": "metadata_templates",
+            "method": "run_metadata_templates",
+            "input_mapping": [
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "workspace_name"
+                },{
+                    "narrative_system_variable": "workspace_id",
+                    "target_property": "workspace_id"
+                },{
+                    "input_parameter": "sample_template",
+                    "target_property": "sample_template"
+                }
+            ],
+            "output_mapping": [
+                {
+                    "service_method_output_path": [0,"report_name"],
+                    "target_property": "report_name"
+                },{
+                    "service_method_output_path": [0,"report_ref"],
+                    "target_property": "report_ref"
+                }
+            ]
+        }
+    },
+    "job_id_output_field": "docker"
+}

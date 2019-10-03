@@ -12,7 +12,7 @@
     "parameters": [ 
         {
             "id": "sample_template",
-            "optional": true,
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],

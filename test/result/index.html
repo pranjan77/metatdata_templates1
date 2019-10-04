@@ -18,7 +18,7 @@
 var container3 = document.getElementById('example3')
 
 
-var data = [['Sample Name', 'Parent Sample', 'PI', 'Project', 'material', 'Latitude', 'Longitude' ,'depth', 'Unit of depth', "Description"],
+var data = [['Sample Name', 'Parent Sample', 'PI', 'Project', 'material', 'Latitude', 'Longitude' ,'depth', 'Unit of depth', "Description", "Collection Date", "Time Zone", "Biome", "Test_OLS"],
 [],[], [],[], [],[] , [],[], [],[], [],[], [],[], [],[], [],[]
 
 ]
@@ -42,7 +42,7 @@ var hot3 = new Handsontable(container3, {
   {
         type: 'text'
     },
-     
+
 {
       type: 'autocomplete',
       source: function (query, process) {
@@ -154,7 +154,78 @@ var hot3 = new Handsontable(container3, {
 
   {
         type: 'text'
+    },
+  {
+        type: 'date',
+        dateFormat: 'MM/DD/YYYY',
+        correctFormat: true
+
+    },
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'time_zones.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      }
+    },
+
+{
+      type: 'autocomplete',
+      source: function (query, process) {
+        $.ajax({
+          url: 'biomes.json',
+          dataType: 'json',
+          data: {
+            query: query
+          },
+          success: function (response) {
+            console.log("response", response);
+            //process(JSON.parse(response.data)); // JSON.parse takes string as a argument
+            process(response.data);
+
+          }
+        });
+      }
+    },
+
+
+{
+    type: 'autocomplete',
+    source: function (query, process) {
+      $.ajax({
+        url: 'https://www.ebi.ac.uk/ols/api/select',
+        dataType: 'json',
+        data: {
+          q: query
+        },
+        success: function (response) {
+          var arr= new Array();
+
+          $.each(response.response.docs, function(index,value) {
+            arr.push( value.label + " | " + value.iri )
+          });
+          console.log(arr.length)
+            console.log(arr)
+            process(arr);
+
+        }
+      });
     }
+}
+
+
+
   ]
 
 
@@ -168,7 +239,7 @@ hot3.updateSettings({
     if (row == 0) {
       cellProperties.readOnly = true;
     }
-  
+
     return cellProperties;
   }
 });

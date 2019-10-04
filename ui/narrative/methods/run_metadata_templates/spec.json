@@ -44,6 +44,11 @@
             "options":
             [
                 {
+                    "display": "Collection date",
+                    "value": "collection_date"
+                },
+
+                {
                     "display": "Collection time",
                     "value": "collection_time"
                 },
